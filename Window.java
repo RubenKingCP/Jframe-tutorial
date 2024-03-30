@@ -1,10 +1,14 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Window {
     private static JFrame frame;
@@ -16,6 +20,14 @@ public class Window {
         frame = new JFrame();
         panel = new JPanel();
         button = new JButton();
+
+        //Adding an action listner to the button
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                JOptionPane.showMessageDialog(panel, "clicked");
+            }
+        });
 
         //Add button to the jpanel
         panel.add(button);
