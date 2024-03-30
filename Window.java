@@ -1,3 +1,4 @@
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -8,11 +9,16 @@ import java.awt.Dimension;
 public class Window {
     private static JFrame frame;
     private static JPanel panel;
+    private static JButton button;
 
 
     public static void main(String[] args) {
         frame = new JFrame();
         panel = new JPanel();
+        button = new JButton();
+
+        //Add button to the jpanel
+        panel.add(button);
 
         // Set preferred size and background color for the panel
         panel.setPreferredSize(new Dimension(200, 200));
