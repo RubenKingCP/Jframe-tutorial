@@ -1,3 +1,5 @@
+import javax.swing.AbstractButton;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
@@ -5,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -14,6 +17,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Enumeration;
 
 public class Window {
     private static JFrame frame;
@@ -24,7 +28,20 @@ public class Window {
     private static JLabel jlabel;
     private static JComboBox<String> comboBox;
     private static JCheckBox checkBox;
+    private static JRadioButton but1;
+    private static JRadioButton but2;
+    private static ButtonGroup buttonGroup;
 
+    public static String getButton(ButtonGroup buttonGroup){
+        Enumeration<AbstractButton> buttons = buttonGroup.getElements();
+        while (buttons.hasMoreElements() == true) {
+            AbstractButton button = buttons.nextElement();
+            if(button.isSelected()){
+                return button.getText();
+            }
+        }
+        return null;
+    }
     public static void main(String[] args) {
         frame = new JFrame();
         panel1 = new JPanel();
@@ -34,13 +51,18 @@ public class Window {
         jlabel = new JLabel();
         comboBox = new JComboBox<String>();
         checkBox = new JCheckBox();
+        but1 = new JRadioButton();
+        but2 = new JRadioButton();
+        buttonGroup = new ButtonGroup();
 
 
         //Adding an action listner to the button
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(panel1, textField.getText() + " " + comboBox.getSelectedItem() + " button is " + checkBox.isSelected());
+                JOptionPane.showMessageDialog(panel1, textField.getText() + " "
+                 + comboBox.getSelectedItem() + " button is " + checkBox.isSelected()
+                 + "\nradio button : " + getButton(buttonGroup));
             }
         });
 
@@ -80,6 +102,14 @@ public class Window {
         checkBox.setSize(new Dimension(100, 100));
         checkBox.setText("Active");
 
+        //Customize radio buttons
+        but1.setText("Hi");
+        but2.setText("Hello");
+
+        //Add them to buttonGroup
+        buttonGroup.add(but1);
+        buttonGroup.add(but2);
+
         //Add button to the jpanel1
         panel1.add(button);
 
@@ -94,6 +124,10 @@ public class Window {
 
         //Add checkbox
         panel2.add(checkBox);
+
+        //Add radoi button to paenl
+        panel1.add(but1);
+        panel1.add(but2);
 
         // Set preferred size and background color for the panels
         panel1.setPreferredSize(new Dimension(200, 200));
