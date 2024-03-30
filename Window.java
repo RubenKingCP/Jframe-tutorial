@@ -1,4 +1,5 @@
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -7,7 +8,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.Document;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,6 +23,7 @@ public class Window {
     private static JTextField textField;
     private static JLabel jlabel;
     private static JComboBox<String> comboBox;
+    private static JCheckBox checkBox;
 
     public static void main(String[] args) {
         frame = new JFrame();
@@ -32,13 +33,14 @@ public class Window {
         textField = new JTextField();
         jlabel = new JLabel();
         comboBox = new JComboBox<String>();
+        checkBox = new JCheckBox();
 
 
         //Adding an action listner to the button
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(panel1, textField.getText() + " " + comboBox.getSelectedItem());
+                JOptionPane.showMessageDialog(panel1, textField.getText() + " " + comboBox.getSelectedItem() + " button is " + checkBox.isSelected());
             }
         });
 
@@ -68,12 +70,15 @@ public class Window {
 
         //Customize comboBox
         comboBox.setSize(new Dimension(100, 100));
-        comboBox.addItem("OPtion 1");
-        comboBox.addItem("OPtion 2");
-        comboBox.addItem("OPtion 3");
-        comboBox.addItem("OPtion 4");
+        comboBox.addItem("Option 1");
+        comboBox.addItem("Option 2");
+        comboBox.addItem("Option 3");
+        comboBox.addItem("Option 4");
         comboBox.setSelectedIndex(0);
 
+        //Customize checkBox
+        checkBox.setSize(new Dimension(100, 100));
+        checkBox.setText("Active");
 
         //Add button to the jpanel1
         panel1.add(button);
@@ -86,6 +91,9 @@ public class Window {
 
         //Add comboBox to panel2
         panel2.add(comboBox);
+
+        //Add checkbox
+        panel2.add(checkBox);
 
         // Set preferred size and background color for the panels
         panel1.setPreferredSize(new Dimension(200, 200));
