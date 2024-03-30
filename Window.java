@@ -1,4 +1,5 @@
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,6 +22,7 @@ public class Window {
     private static JButton button;
     private static JTextField textField;
     private static JLabel jlabel;
+    private static JComboBox<String> comboBox;
 
     public static void main(String[] args) {
         frame = new JFrame();
@@ -29,13 +31,14 @@ public class Window {
         button = new JButton();
         textField = new JTextField();
         jlabel = new JLabel();
+        comboBox = new JComboBox<String>();
 
 
         //Adding an action listner to the button
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                JOptionPane.showMessageDialog(panel1, textField.getText());
+                JOptionPane.showMessageDialog(panel1, textField.getText() + " " + comboBox.getSelectedItem());
             }
         });
 
@@ -63,6 +66,15 @@ public class Window {
         //Customize jlabel
         jlabel.setPreferredSize(new Dimension(400, 20));
 
+        //Customize comboBox
+        comboBox.setSize(new Dimension(100, 100));
+        comboBox.addItem("OPtion 1");
+        comboBox.addItem("OPtion 2");
+        comboBox.addItem("OPtion 3");
+        comboBox.addItem("OPtion 4");
+        comboBox.setSelectedIndex(0);
+
+
         //Add button to the jpanel1
         panel1.add(button);
 
@@ -71,6 +83,9 @@ public class Window {
 
         //Add jlabel to panel2
         panel2.add(jlabel);
+
+        //Add comboBox to panel2
+        panel2.add(comboBox);
 
         // Set preferred size and background color for the panels
         panel1.setPreferredSize(new Dimension(200, 200));
